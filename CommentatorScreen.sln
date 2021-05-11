@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentatorScreen", "CommentatorScreen\CommentatorScreen.csproj", "{BDEE365F-88E8-44AC-A494-F988C24AB02E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDEE365F-88E8-44AC-A494-F988C24AB02E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDEE365F-88E8-44AC-A494-F988C24AB02E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDEE365F-88E8-44AC-A494-F988C24AB02E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDEE365F-88E8-44AC-A494-F988C24AB02E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94953EF3-0ABC-42FA-9C38-DA688A426993}
+	EndGlobalSection
+EndGlobal

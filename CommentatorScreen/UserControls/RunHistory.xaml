@@ -1,0 +1,306 @@
+﻿<UserControl x:Class="CommentatorScreen.RunHistory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:CommentatorScreen"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Background="White">
+
+        <Grid.RowDefinitions>
+
+            <!-- Row for each lane/ current and next pair -->
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <!-- Stack panel container -->
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <TextBlock FontWeight="Bold"  FontSize="24" Foreground="Gray">
+                <Run Text="Left Lane -" />
+                <Run Text="#" /><Run Text="{Binding CurrentLeftLaneDriver.Racenum, Converter={local:TrimmingValueConverter}}" />
+                <Run Text="{Binding CurrentLeftLaneDriver.Driver, Converter={local:TrimmingValueConverter}}" />
+            </TextBlock>
+
+            <!-- Datagrid -->
+            <DataGrid Grid.Row="1" ItemsSource="{Binding CurrentLeftLaneHistory}"
+                      Visibility="{Binding CurrentLeftLaneHistory.IsEmpty,
+                Converter={StaticResource BooleanToVisibilityConverter}}"
+                    CanUserAddRows="False"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="All"
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="True">
+                <DataGrid.Columns>
+
+                    <!-- Column for Lane -->
+                    <DataGridTextColumn
+                    Header="Lane"
+                    Width="*"
+                    Binding="{Binding Lane, Converter={local:LaneValueConverter}}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Reaction -->
+                    <DataGridTextColumn
+                    Header="Reaction"
+                    Width="*"
+                    Binding="{Binding Reaction}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for ET -->
+                    <DataGridTextColumn
+                    Header="ET"
+                    Width="*"
+                    Binding="{Binding ET}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Index -->
+                    <DataGridTextColumn
+                    Header="Index"
+                    Width="*"
+                    Binding="{Binding Index}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for MPH -->
+                    <DataGridTextColumn
+                    Header="MPH"
+                    Width="*"
+                    Binding="{Binding MPH}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Result-->
+                    <DataGridTextColumn
+                    Header="Result"
+                    Width="*"
+                    Binding="{Binding Result, Converter={local:TrimmingValueConverter}}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Empty data grid error message -->
+            <!--<TextBlock Text="Racer has no prevouis runs"
+                        Visibility="{Binding CurrentLeftLaneHistory.IsEmpty,
+                Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Grid.Row="1" />-->
+        </Grid>
+
+        <!-- Stack panel container -->
+        <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <TextBlock  FontWeight="Bold"  FontSize="24" Foreground="Gray">
+                <Run Text="Right Lane -" />
+                <Run Text="#" /><Run Text="{Binding CurrentRightLaneDriver.Racenum, Converter={local:TrimmingValueConverter}}" />
+                <Run Text="{Binding CurrentRightLaneDriver.Driver, Converter={local:TrimmingValueConverter}}" />
+            </TextBlock>
+
+            <!-- Datagrid -->
+            <DataGrid Grid.Row="1" ItemsSource="{Binding CurrentRightLaneHistory}"
+                    CanUserAddRows="False"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="All"
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="True">
+                <DataGrid.Columns>
+
+                    <!-- Column for Lane -->
+                    <DataGridTextColumn
+                    Header="Lane"
+                    Width="*"
+                    Binding="{Binding Lane, Converter={local:LaneValueConverter}}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Reaction -->
+                    <DataGridTextColumn
+                    Header="Reaction"
+                    Width="*"
+                    Binding="{Binding Reaction}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for ET -->
+                    <DataGridTextColumn
+                    Header="ET"
+                    Width="*"
+                    Binding="{Binding ET}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Index -->
+                    <DataGridTextColumn
+                    Header="Index"
+                    Width="*"
+                    Binding="{Binding Index}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for MPH -->
+                    <DataGridTextColumn
+                    Header="MPH"
+                    Width="*"
+                    Binding="{Binding MPH}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Result-->
+                    <DataGridTextColumn
+                    Header="Result"
+                    Width="*"
+                    Binding="{Binding Result, Converter={local:TrimmingValueConverter}}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!-- Stack panel container -->
+        <Grid Grid.Row="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <TextBlock  FontWeight="Bold"  FontSize="24" Foreground="Gray">
+                <Run Text="Left Lane -" />
+                <Run Text="#" /><Run Text="{Binding NextLeftLaneDriver.Racenum, Converter={local:TrimmingValueConverter}}" />
+                <Run Text="{Binding NextLeftLaneDriver.Driver, Converter={local:TrimmingValueConverter}}" />
+            </TextBlock>
+
+            <!-- Datagrid -->
+            <DataGrid Grid.Row="1" ItemsSource="{Binding NextLeftLaneHistory}"
+                    CanUserAddRows="False"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="All"
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="True">
+                <DataGrid.Columns>
+
+                    <!-- Column for Lane -->
+                    <DataGridTextColumn
+                    Header="Lane"
+                    Width="*"
+                    Binding="{Binding Lane, Converter={local:LaneValueConverter}}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Reaction -->
+                    <DataGridTextColumn
+                    Header="Reaction"
+                    Width="*"
+                    Binding="{Binding Reaction}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for ET -->
+                    <DataGridTextColumn
+                    Header="ET"
+                    Width="*"
+                    Binding="{Binding ET}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Index -->
+                    <DataGridTextColumn
+                    Header="Index"
+                    Width="*"
+                    Binding="{Binding Index}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for MPH -->
+                    <DataGridTextColumn
+                    Header="MPH"
+                    Width="*"
+                    Binding="{Binding MPH}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Result-->
+                    <DataGridTextColumn
+                    Header="Result"
+                    Width="*"
+                    Binding="{Binding Result, Converter={local:TrimmingValueConverter}}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!-- Stack panel container -->
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <!-- Title -->
+            <TextBlock  FontWeight="Bold"  FontSize="24" Foreground="Gray">
+                <Run Text="Right Lane -" />
+                <Run Text="#" /><Run Text="{Binding NextRightLaneDriver.Racenum, Converter={local:TrimmingValueConverter}}" />
+                <Run Text="{Binding NextRightLaneDriver.Driver, Converter={local:TrimmingValueConverter}}" />
+            </TextBlock>
+
+            <!-- Datagrid -->
+            <DataGrid Grid.Row="1" ItemsSource="{Binding NextRightLaneHistory}"
+                    CanUserAddRows="False"
+                    AutoGenerateColumns="False"
+                    HeadersVisibility="All"
+                    HorizontalAlignment="Stretch"
+                    IsReadOnly="True">
+                <DataGrid.Columns>
+
+                    <!-- Column for Lane -->
+                    <DataGridTextColumn
+                    Header="Lane"
+                    Width="*"
+                    Binding="{Binding Lane, Converter={local:LaneValueConverter}}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Reaction -->
+                    <DataGridTextColumn
+                    Header="Reaction"
+                    Width="*"
+                    Binding="{Binding Reaction}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for ET -->
+                    <DataGridTextColumn
+                    Header="ET"
+                    Width="*"
+                    Binding="{Binding ET}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Index -->
+                    <DataGridTextColumn
+                    Header="Index"
+                    Width="*"
+                    Binding="{Binding Index}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for MPH -->
+                    <DataGridTextColumn
+                    Header="MPH"
+                    Width="*"
+                    Binding="{Binding MPH}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                    <!-- Column for Result-->
+                    <DataGridTextColumn
+                    Header="Result"
+                    Width="*"
+                    Binding="{Binding Result, Converter={local:TrimmingValueConverter}}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

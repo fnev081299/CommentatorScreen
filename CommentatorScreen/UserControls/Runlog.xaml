@@ -1,0 +1,179 @@
+﻿<UserControl x:Class="CommentatorScreen.Runlog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:CommentatorScreen"
+             mc:Ignorable="d"
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+
+            <!-- Top bar for searching and button controls -->
+            <RowDefinition Height="auto" />
+
+            <!-- Main data grid -->
+            <RowDefinition Height="1*" />
+
+            <!-- Bottom info window -->
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Top bar -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+
+                <!-- Left control button -->
+                <ColumnDefinition Width="auto" />
+
+                <!-- Middle spacing -->
+                <ColumnDefinition Width="1*" />
+
+                <!-- Right search bar -->
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Control buttons -->
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding RefreshRuns}">
+                    <materialDesign:PackIcon Kind="Refresh" />
+                </Button>
+            </StackPanel>
+
+            <!-- search textbox-->
+            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Width="200" materialDesign:HintAssist.Hint="Search...">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return"
+                                Command="{Binding SearchCommand}" />
+                </TextBox.InputBindings>
+            </TextBox>
+        </Grid>
+
+        <!-- Main data grid -->
+        <DataGrid
+            ItemsSource="{Binding FilteredRunlog}"
+            Grid.Row="1"
+            CanUserAddRows="False"
+            AutoGenerateColumns="False"
+            HeadersVisibility="All"
+            HorizontalAlignment="Stretch"
+            IsReadOnly="True">
+            <DataGrid.Columns>
+
+                <!-- Column for lane -->
+                <DataGridTextColumn
+                    Header="Lane"
+                    Width="*"
+                    Binding="{Binding Lane, Converter={local:LaneValueConverter}}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                <!-- Column for Category -->
+                <DataGridTextColumn
+                    Header="Category"
+                    Width="*"
+                    Binding="{Binding Category}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                <!-- Column for Race # -->
+                <DataGridTextColumn
+                    Header="Race #"
+                    Width="*"
+                    Binding="{Binding Racenum}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                <!-- Column for R.T -->
+                <DataGridTextColumn
+                    Header="R.T"
+                    Width="*"
+                    Binding="{Binding Reaction}"
+
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                <!-- Column for 60' -->
+                <DataGridTextColumn
+                    Header="60'"
+                    Width="*"
+                    Binding="{Binding Et60}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                <!-- Column for 330' -->
+                <DataGridTextColumn
+                    Header="330'"
+                    Width="*"
+                    Binding="{Binding Et330}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                <!-- Column for 1/8 -->
+                <DataGridTextColumn
+                    Header="1/8"
+                    Width="*"
+                    Binding="{Binding Et660}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+                <DataGridTextColumn
+                    Header="MPH"
+                    Width="*"
+                    Binding="{Binding Speed660}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                <!-- Column for 1000' -->
+                <DataGridTextColumn
+                    Header="1000'"
+                    Width="*"
+                    Binding="{Binding Et1000}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+                <DataGridTextColumn
+                    Header="1000'"
+                    Width="*"
+                    Binding="{Binding Speed1000}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                <!-- Column for 1/4 -->
+                <DataGridTextColumn
+                    Header="1/4"
+                    Width="*"
+                    Binding="{Binding Et1320}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+                <DataGridTextColumn
+                    Header="MPH"
+                    Width="*"
+                    Binding="{Binding Speed1320}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                <!-- Column for Index -->
+                <DataGridTextColumn
+                    Header="Index"
+                    Width="*"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+
+                <!-- Column for Result -->
+                <DataGridTextColumn
+                    Header="Result"
+                    Width="*"
+                    Binding="{Binding Result}"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--Bottom information bar-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Last updated -->
+            <TextBlock>
+                <Run Text="Last updated:" />
+                <Run Text="{Binding LastUpdated, Mode=OneWay}" />
+            </TextBlock>
+
+            <!-- Total runs-->
+            <TextBlock Grid.Column="2">
+                <Run Text="Total Runs:" />
+                <Run Text="{Binding RunlogCount, Mode=OneWay}" />
+            </TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

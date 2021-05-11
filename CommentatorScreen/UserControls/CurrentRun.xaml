@@ -1,0 +1,516 @@
+﻿<UserControl x:Class="CommentatorScreen.CurrentRun"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:CommentatorScreen"
+             mc:Ignorable="d"
+             d:DesignHeight="637" d:DesignWidth="700">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+
+            <!-- Left lane infomation window -->
+            <ColumnDefinition Width="1*" />
+
+            <!-- Central information window -->
+            <ColumnDefinition Width="2*" />
+
+            <!-- Right lane information window -->
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Left lane infomation window -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+
+                <!-- Lane sponsor image -->
+                <RowDefinition Height="1*" />
+
+                <!-- Current pair -->
+                <RowDefinition Height="6*" />
+
+                <!-- Next pair -->
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+
+            <!-- Drop shadow effect -->
+            <Border Grid.Row="0"  Margin="0" BorderBrush="Black" BorderThickness="0 0 0 0" Background="White">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="2" />
+                </Border.Effect>
+            </Border>
+
+            <!-- Drop shadow effect -->
+            <Border Grid.Row="1"  Margin="0" BorderBrush="Black" BorderThickness="0 0 0 0" Background="White">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="2" />
+                </Border.Effect>
+            </Border>
+
+            <!-- Drop shadow effect -->
+            <Border Grid.Row="2"  Margin="0" BorderBrush="Black" BorderThickness="0 0 0 0" Background="White">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="2" />
+                </Border.Effect>
+            </Border>
+
+            <!-- Lane sponsor image -->
+            <Image Margin="10,0,10,0" Stretch="Uniform" Source="pack://application:,,,/CommentatorScreen;component/Images/STPLogo.png" />
+
+            <!-- Current left lane racer -->
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" DataContext="{Binding LeftDriver}">
+
+                <!-- Info textbox -->
+                <TextBlock Margin="10" Foreground="Gray" Opacity="0.8" FontSize="30" Text="Current Pair" HorizontalAlignment="Center" />
+
+                <!-- Racer name and racenum-->
+                <TextBlock TextWrapping="Wrap" Text="{Binding Driver, Converter={local:TrimmingValueConverter}}" HorizontalAlignment="Center" Margin="0 10 0 0" Foreground="Gray" FontSize="30" FontWeight="Bold" />
+                <TextBlock Text="" FontSize="25" Foreground="Gray" HorizontalAlignment="Center" Opacity="0.8">
+                    <Run Text="#"></Run>
+                    <Run Text="{Binding Racenum, Converter={local:TrimmingValueConverter}}" />
+                </TextBlock>
+
+                <!-- Sub info -->
+                <StackPanel Margin="20">
+
+                    <!-- City and contry -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Location" Foreground="Gray" />
+                        <TextBlock Text="" Margin="10 0" FontSize="20" Foreground="Gray">
+                            <Run Text="{Binding City, Converter={local:TrimmingValueConverter}}" />
+                            <Run Text="{Binding State, Converter={local:TrimmingValueConverter}}" />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- Make model -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Car" Foreground="Gray" />
+                        <TextBlock Text="{Binding Cartype, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="20" Foreground="Gray">
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- Car name -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Abc" Foreground="Gray" />
+                        <TextBlock Text="{Binding Carname, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="20" Foreground="Gray" />
+                    </StackPanel>
+
+                    <!-- Engine size -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Engine" Foreground="Gray" />
+                        <TextBlock Text="{Binding Engine, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="20" Foreground="Gray" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Next left lane racer -->
+            <StackPanel Grid.Row="2" VerticalAlignment="Center" DataContext="{Binding LeftNextDriver}">
+
+                <!-- Info textbox -->
+                <TextBlock Margin="10" Foreground="Gray" Opacity="0.8" FontSize="20" Text="Next Pair" HorizontalAlignment="Center" />
+
+                <!-- Racer name and racenum-->
+                <TextBlock TextWrapping="Wrap" Text="{Binding Driver, Converter={local:TrimmingValueConverter}}" HorizontalAlignment="Center" Margin="0 10 0 0" Foreground="Gray" FontSize="20" FontWeight="Bold" />
+                <TextBlock Text="" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" Opacity="0.8">
+                    <Run Text="#"></Run>
+                    <Run Text="{Binding Racenum, Converter={local:TrimmingValueConverter}}" />
+                </TextBlock>
+
+                <!-- Sub info -->
+                <StackPanel Margin="20">
+
+                    <!-- City and contry -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Location" Foreground="Gray" />
+                        <TextBlock Text="" Margin="10 0" FontSize="15" Foreground="Gray">
+                            <Run Text="{Binding City, Converter={local:TrimmingValueConverter}}" />
+                            <Run Text="{Binding State, Converter={local:TrimmingValueConverter}}" />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- Make model -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Car" Foreground="Gray" />
+                        <TextBlock Text="{Binding Cartype, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="15" Foreground="Gray">
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- Car name -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Abc" Foreground="Gray" />
+                        <TextBlock Text="{Binding Carname, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="15" Foreground="Gray" />
+                    </StackPanel>
+
+                    <!-- Engine size -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Engine" Foreground="Gray" />
+                        <TextBlock Text="{Binding Engine, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="15" Foreground="Gray" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <!-- Main incremnetal infomation -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+
+            <!-- Main incrementals -->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <!-- Category/Round in -->
+                    <RowDefinition />
+
+                    <!-- Spacer -->
+                    <RowDefinition Height="20" />
+
+                    <!-- Dial in -->
+                    <RowDefinition />
+
+                    <RowDefinition Height="20" />
+
+                    <!-- Reaction -->
+                    <RowDefinition />
+
+                    <!-- ET60 -->
+                    <RowDefinition />
+
+                    <!-- ET330 -->
+                    <RowDefinition />
+
+                    <!-- Spacer -->
+                    <RowDefinition Height="20" />
+
+                    <!-- ET660 -->
+                    <RowDefinition />
+
+                    <!-- Speed660 -->
+                    <RowDefinition />
+
+                    <!-- Spacer -->
+                    <RowDefinition Height="20" />
+
+                    <!-- ET1000 -->
+                    <RowDefinition />
+
+                    <!-- Speed1000 -->
+                    <RowDefinition />
+
+                    <!-- Spacer -->
+                    <RowDefinition Height="20" />
+
+                    <!-- ET1320 -->
+                    <RowDefinition />
+
+                    <!-- Speed1320 -->
+                    <RowDefinition />
+
+                    <!-- Diff -->
+                    <RowDefinition />
+
+                    <!-- Spacer -->
+                    <RowDefinition Height="20" />
+
+                    <!-- Result -->
+                    <RowDefinition />
+
+                    <!-- Remarks -->
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+
+                    <!-- Left lane -->
+                    <ColumnDefinition />
+
+                    <!-- Center -->
+                    <ColumnDefinition />
+
+                    <!-- Right lane -->
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!-- Category mode -->
+                <Viewbox Grid.Column="0" Grid.ColumnSpan="3">
+                    <TextBlock>
+                        <Run Text="{Binding CurrentCategory.Name, Converter={local:TrimmingValueConverter}}" />
+                        <Run Text="-" />
+                        <Run Text="{Binding Mode}" />
+                    </TextBlock>
+                </Viewbox>
+
+                <!-- Index -->
+                <Viewbox  Grid.Column="0"  Grid.Row="2">
+                    <TextBlock Text="{Binding CurrentPair.Leftindex}" />
+                </Viewbox>
+
+                <Viewbox Grid.Column="1"  Grid.Row="2">
+                    <TextBlock Text="Index" />
+                </Viewbox>
+
+                <Viewbox  Grid.Column="2"  Grid.Row="2">
+                    <TextBlock Text="{Binding CurrentPair.Rightindex}" />
+                </Viewbox>
+
+                <!-- Reaction -->
+                <Viewbox Grid.Column="0" Grid.Row="4">
+                    <TextBlock Text="{Binding CurrentPair.Leftreaction}" />
+                </Viewbox>
+                <Viewbox Grid.Column="1"  Grid.Row="4">
+                    <TextBlock Text="R.T" />
+                </Viewbox>
+                <Viewbox Grid.Column="2"  Grid.Row="4">
+                    <TextBlock Text="{Binding CurrentPair.Rightreaction}" />
+                </Viewbox>
+
+                <!-- 60 -->
+                <Viewbox Grid.Column="0" Grid.Row="5">
+                    <TextBlock Text="{Binding CurrentPair.Leftet60}" />
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="5">
+                    <TextBlock Text="60'" />
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="5">
+                    <TextBlock Text="{Binding CurrentPair.Rightet60}" />
+                </Viewbox>
+
+                <!-- 330 -->
+                <Viewbox Grid.Column="0" Grid.Row="6">
+                    <TextBlock Text="{Binding CurrentPair.Leftet330}" />
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="6">
+                    <TextBlock Text="330" />
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="6">
+                    <TextBlock Text="{Binding CurrentPair.Rightet330}" />
+                </Viewbox>
+
+                <!-- 660 -->
+                <Viewbox Grid.Column="0" Grid.Row="8">
+                    <TextBlock Text="{Binding CurrentPair.Leftet660}" />
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="8">
+                    <TextBlock Text="1/8" />
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="8">
+                    <TextBlock Text="{Binding CurrentPair.Rightet660}" />
+                </Viewbox>
+
+                <!-- 660 -->
+                <Viewbox Grid.Column="0" Grid.Row="9">
+                    <TextBlock Text="{Binding CurrentPair.Leftspeed660}" />
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="9">
+                    <TextBlock Text="MPH" />
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="9">
+                    <TextBlock Text="{Binding CurrentPair.Rightspeed660}" />
+                </Viewbox>
+
+                <!-- 1000 -->
+                <Viewbox Grid.Column="0" Grid.Row="11">
+                    <TextBlock Text="{Binding CurrentPair.Leftet1000}" />
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="11">
+                    <TextBlock Text="1000'" />
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="11">
+                    <TextBlock Text="{Binding CurrentPair.Rightet1000}" />
+                </Viewbox>
+
+                <!-- 1000 -->
+                <Viewbox Grid.Column="0" Grid.Row="12">
+                    <TextBlock Text="{Binding CurrentPair.Leftspeed1000}" />
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="12">
+                    <TextBlock Text="MPH" />
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="12">
+                    <TextBlock Text="{Binding CurrentPair.Rightspeed1000}" />
+                </Viewbox>
+
+                <!-- 1320 -->
+                <Viewbox Grid.Column="0" Grid.Row="14">
+                    <TextBlock Text="{Binding CurrentPair.Leftet1320}" />
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="14">
+                    <TextBlock Text="1/4" />
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="14">
+                    <TextBlock Text="{Binding CurrentPair.Rightet1320}" />
+                </Viewbox>
+
+                <!-- 1320 -->
+                <Viewbox Grid.Column="0" Grid.Row="15">
+                    <TextBlock Text="{Binding CurrentPair.Leftspeed1320}" />
+                </Viewbox>
+                <Viewbox Grid.Column="1" Grid.Row="15">
+                    <TextBlock Text="MPH" />
+                </Viewbox>
+                <Viewbox Grid.Column="2" Grid.Row="15">
+                    <TextBlock Text="{Binding CurrentPair.Rightspeed1320}" />
+                </Viewbox>
+
+                <!-- Differance -->
+                <Viewbox Visibility="Hidden" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="16">
+                    <TextBlock  Text="Spilt: 0.2369 (20.38m)" />
+                </Viewbox>
+
+                <!-- Result -->
+                <Viewbox Visibility="Hidden" Grid.Column="0" Grid.Row="18">
+                    <TextBlock Text="WIN" />
+                </Viewbox>
+                <Viewbox Visibility="Hidden" Grid.Column="1" Grid.Row="18">
+                    <TextBlock Text="Result" />
+                </Viewbox>
+                <Viewbox Visibility="Hidden" Grid.Column="2" Grid.Row="18">
+                    <TextBlock Text="LOSE" />
+                </Viewbox>
+
+                <!-- Remarks -->
+                <Viewbox Visibility="Hidden" Grid.Column="0" Grid.Row="19">
+                    <TextBlock Text="Red Light" />
+                </Viewbox>
+                <Viewbox Visibility="Hidden"  Grid.Column="1" Grid.Row="19">
+                    <TextBlock Text="Remarks" />
+                </Viewbox>
+                <Viewbox Visibility="Hidden" Grid.Column="2" Grid.Row="19">
+                    <TextBlock Text="Breakout" />
+                </Viewbox>
+            </Grid>
+        </Grid>
+
+        <!-- Right lane infomation window -->
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+
+                <!-- Lane sponsor image -->
+                <RowDefinition Height="1*" />
+
+                <!-- Current pair -->
+                <RowDefinition Height="6*" />
+
+                <!-- Next pair -->
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+
+            <!-- Drop shadow effect -->
+            <Border Grid.Row="0"  Margin="0" BorderBrush="Black" BorderThickness="0 0 0 0" Background="White">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="2" Direction="270" />
+                </Border.Effect>
+            </Border>
+
+            <!-- Drop shadow effect -->
+            <Border Grid.Row="1"  Margin="0" BorderBrush="Black" BorderThickness="0 0 0 0" Background="White">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="2" Direction="270" />
+                </Border.Effect>
+            </Border>
+
+            <!-- Drop shadow effect -->
+            <Border Grid.Row="2"  Margin="0" BorderBrush="Black" BorderThickness="0 0 0 0" Background="White">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="2" Direction="270" />
+                </Border.Effect>
+            </Border>
+
+            <!-- Lane sponsor image -->
+            <Image Margin="10,0,10,0" Stretch="Uniform" Source="pack://application:,,,/CommentatorScreen;component/Images/AutoglymLogo.jpg" />
+
+            <!-- Current right lane racer -->
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" DataContext="{Binding RightDriver}">
+
+                <!-- Info textbox -->
+                <TextBlock Margin="10" Foreground="Gray" Opacity="0.8" FontSize="30" Text="Current Pair" HorizontalAlignment="Center" />
+
+                <!-- Racer name and racenum-->
+                <TextBlock TextWrapping="Wrap" Text="{Binding Driver, Converter={local:TrimmingValueConverter}}" HorizontalAlignment="Center" Margin="0 10 0 0" Foreground="Gray" FontSize="30" FontWeight="Bold" />
+                <TextBlock Text="" FontSize="25" Foreground="Gray" HorizontalAlignment="Center" Opacity="0.8">
+                    <Run Text="#"></Run>
+                    <Run Text="{Binding Racenum, Converter={local:TrimmingValueConverter}}" />
+                </TextBlock>
+
+                <!-- Sub info -->
+                <StackPanel Margin="20">
+
+                    <!-- City and contry -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Location" Foreground="Gray" />
+                        <TextBlock Text="" Margin="10 0" FontSize="20" Foreground="Gray">
+                            <Run Text="{Binding City, Converter={local:TrimmingValueConverter}}" />
+                            <Run Text="{Binding State, Converter={local:TrimmingValueConverter}}" />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- Make model -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Car" Foreground="Gray" />
+                        <TextBlock Text="{Binding Cartype, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="20" Foreground="Gray">
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- Car name -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Abc" Foreground="Gray" />
+                        <TextBlock Text="{Binding Carname, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="20" Foreground="Gray" />
+                    </StackPanel>
+
+                    <!-- Engine size -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Engine" Foreground="Gray" />
+                        <TextBlock Text="{Binding Engine, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="20" Foreground="Gray" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Next right lane racer -->
+            <StackPanel Grid.Row="2" VerticalAlignment="Center" DataContext="{Binding RightNextDriver}">
+
+                <!-- Info textbox -->
+                <TextBlock Margin="10" Foreground="Gray" Opacity="0.8" FontSize="20" Text="Next Pair" HorizontalAlignment="Center" />
+
+                <!-- Racer name and racenum-->
+                <TextBlock TextWrapping="Wrap" Text="{Binding Driver, Converter={local:TrimmingValueConverter}}" HorizontalAlignment="Center" Margin="0 10 0 0" Foreground="Gray" FontSize="20" FontWeight="Bold" />
+                <TextBlock Text="" FontSize="15" Foreground="Gray" HorizontalAlignment="Center" Opacity="0.8">
+                    <Run Text="#"></Run>
+                    <Run Text="{Binding Racenum, Converter={local:TrimmingValueConverter}}" />
+                </TextBlock>
+
+                <!-- Sub info -->
+                <StackPanel Margin="20">
+
+                    <!-- City and contry -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Location" Foreground="Gray" />
+                        <TextBlock Text="" Margin="10 0" FontSize="15" Foreground="Gray">
+                            <Run Text="{Binding City, Converter={local:TrimmingValueConverter}}" />
+                            <Run Text="{Binding State, Converter={local:TrimmingValueConverter}}" />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- Make model -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Car" Foreground="Gray" />
+                        <TextBlock Text="{Binding Cartype, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="15" Foreground="Gray">
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- Car name -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Abc" Foreground="Gray" />
+                        <TextBlock Text="{Binding Carname, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="15" Foreground="Gray" />
+                    </StackPanel>
+
+                    <!-- Engine size -->
+                    <StackPanel Orientation="Horizontal" Margin="0 3">
+                        <materialDesign:PackIcon Kind="Engine" Foreground="Gray" />
+                        <TextBlock Text="{Binding Engine, Converter={local:TrimmingValueConverter}}" Margin="10 0" FontSize="15" Foreground="Gray" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
